@@ -337,10 +337,10 @@ jobs:
       - build-and-push
     if: >-
       needs.build-and-push.outputs.stepsCanProceed == 'true' && ${{
-      !github.event.client_payload.releaseData.releaseId }}
+      github.event.client_payload.releaseData.releaseId }} == null
     steps:
       - name: 'Test'
-        run: 'echo "Condition: ${{ !github.event.client_payload.releaseData }}"'
+        run: 'echo "Condition: ${{ github.event.client_payload.releaseData.releaseId }}"'
       - name: 'Run :: Decoding Secrets d1c6aac2-abba-4376-8901-602e56a69356'
         run: |2-
 
