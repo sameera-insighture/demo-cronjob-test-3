@@ -337,7 +337,7 @@ jobs:
       - build-and-push
     if: >-
       needs.build-and-push.outputs.stepsCanProceed == 'true' && ${{
-      github.event.client_payload.releaseData == null }}
+      !github.event.client_payload.releaseData }}
     steps:
       - name: 'Test'
         run: 'echo "Condition: ${{ !github.event.client_payload.releaseData }}"'
